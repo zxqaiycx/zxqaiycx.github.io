@@ -9,7 +9,7 @@ name: Xiaoqian Zhang
 description: A blog where I write down some notes and track learning process.
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: "/images/avatar-icon.pnng"
+avatar: /images/avatar-icon.png
 
 #
 # Flags below are optional
