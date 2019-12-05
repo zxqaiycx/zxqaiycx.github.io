@@ -15,12 +15,14 @@ title: Thyroid Nodule Diagnosis
 
 四篇文章用到的数据集和模型结果如下：
 
+
 | 论文         | 训练集        | 测试集/验证集 | AUC         | Accuracy    | Sensitivity | Specificity |
 | ------------ | ------------- | ------------- | ----------- | ----------- | ----------- | ----------- |
 | 天津肿瘤医院 | 312399 images | 20386 images  | 0.908-0.947 | 0.857-0.889 | 0.843-0.922 | 0.856-0.871 |
 | 马师姐       | 15000 images  | 10交叉验证    | 0.893       | 0.830       | 0.824       | 0.850       |
 | 中山大学     | 200 cases     | 100 cases     |             |             | 0.935       | 0.815       |
 | 杜克大学     | 1278 nodules  | 99 nodules    |             | 0.87        | 0.87        | 0.52        |
+
 
 从图像数据集角度看，天津肿瘤医院用到的数据集是十万量级的，马师姐的文章是万量级的，后两篇文章则是千量级的，前两篇文章得到的模型和结果更可靠也更有说服力。
 
@@ -65,11 +67,14 @@ Use ResNet-50[^1] and Darknet-19[^2] for image classification.
 - Apply on-the-fly data augmentation[^3] for each image during training to avoid overfitting. 
 - A weight decay rate of 0·0005 was also set to additionally combat for overfitting.
 
-To derive individual-level prediction scores, denote $n$ as the total number of images available from a patient and let $P_{cancer}=[P_1, P_2, \cdots , P_n]$ denote the predicted probabilities for these $n$ images that were classified as cancer. The score $\theta$ assigned to the patient was defined as the average value of log-transformed $P_{cancer}$. 
+To derive individual-level prediction scores, denote $n$ as the total number of images available from a patient and let $P_{cancer}=[P_1, P_2, \cdots , P_n]$ denote the predicted probabilities for these $n$ images that were classified as cancer. The score $\theta$ assigned to the patient was defined as the average value of log-transformed $P_{cancer}$
+
 $$
 \theta = - [\ln (1-P_1) + \ln (1-P_2) + \cdots + \ln (1-P_n)] / n
 $$
+
 Combine the prediction scores obtained from ResNet-50 and Darknet-19, which is weighted by their performance (AUC). Define $w_1 = AUC_{res} / (AUC_{res} + AUC_{dark})$ and $w_2 = 1 - w_1$, then
+
 $$
 \theta_{combined} = w_1 \times \theta_{res} + w_2 \times \theta_{dark}
 $$
