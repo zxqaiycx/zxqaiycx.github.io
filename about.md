@@ -7,7 +7,7 @@ I am Xiaoqian Zhang.
 
 This is the blog where I write down my notes and ideas.
 
-This repository was forked from [barryclark/jekyll-now](https://github.com/barryclark/jekyll-now). Thanks for his work. 
+Before I made modifications, the original repository was forked from [barryclark/jekyll-now](https://github.com/barryclark/jekyll-now). Thanks for his work. 
 
 If you do use something, a link back to [https://zxqaiycx.github.io](https://zxqaiycx.github.io) would be highly appreciated.
 
